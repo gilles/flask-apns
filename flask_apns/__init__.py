@@ -56,12 +56,14 @@ class APNS(object):
 
         cert_def = {}
         for key in (
-        'cert_string', 'cert_file', 'key_string', 'key_file', 'passphrase'):
+                'cert_string', 'cert_file', 'key_string', 'key_file',
+                'passphrase'):
             cert_def[key] = app.config.get(
                 'APNS_%s' % key.upper()) or self._cert_params.get(key)
 
         # Handle PASSPHRASE_STRING vs PASSPHRASE_FILE
-        # This is easier for dev vs. conf file vs. env based deployment (Heroku)
+        # This is easier for dev vs. conf file vs. env based deployment
+        # such as Heroku
 
         cert_def['passphrase'] = app.config.get(
             'APNS_PASSPHRASE_STRING') or self._cert_params.get('passphrase')
@@ -118,7 +120,8 @@ class APNS(object):
         if not tokens:
             return False
 
-        message = Message(tokens, alert, badge, sound, expiry, payload, **extra)
+        message = Message(tokens, alert, badge, sound, expiry, payload,
+                          **extra)
         srv = APNs(connection)
         res = srv.send(message)
         if res.failed and self.failed_callback:

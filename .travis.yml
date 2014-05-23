@@ -1,6 +1,6 @@
 language: python
 python:
-  - "3.3"
+#  - "3.3" apns_client is not ready
   - "2.7"
 git:
   submodules: false

@@ -76,7 +76,8 @@ class APNSTest(unittest.TestCase):
 
             apns = flask_apns.APNS(self.app, cert_string='cert_string',
                                    cert_file='cert_file',
-                                   key_string='key_string', key_file='key_file')
+                                   key_string='key_string',
+                                   key_file='key_file')
 
         self.assertEqual(apns._certificate, 'mocked_certificate')
 
